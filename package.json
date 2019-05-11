@@ -1,0 +1,23 @@
+{
+    "name": "fong",
+    "version": "0.1.1",
+    "description": "Framework Of Node GRPC.",
+    "main": "index.ts",
+    "license": "MIT",
+    "scripts": {
+        "tsc": "tsc -p tsconfig.json",
+        "clean": "ts-node cleanjs"
+    },
+    "dependencies": {
+        "@grpc/proto-loader": "^0.5.0",
+        "dayjs": "^1.8.14",
+        "grpc": "^1.20.3",
+        "log4js": "^3.0.6"
+    },
+    "devDependencies": {
+        "@types/node": "^12.0.0",
+        "ts-node": "^6.2.0",
+        "tslint": "^5.16.0",
+        "typescript": "^3.4.5"
+    }
+}

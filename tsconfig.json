@@ -1,0 +1,34 @@
+{
+    "compileOnSave": true,
+    "compilerOptions": {
+        "module": "commonjs",
+        "target": "es2018",
+        "charset": "utf8",
+        "noImplicitAny": true,
+        "esModuleInterop": true,
+        "resolveJsonModule": true,
+        "emitDecoratorMetadata": true,
+        "experimentalDecorators": true,
+        "forceConsistentCasingInFileNames": true,
+        "allowSyntheticDefaultImports": true,
+        "noImplicitUseStrict": true,
+        "listEmittedFiles": true,
+        "removeComments": true,
+        "skipLibCheck": true,
+        "sourceMap": false,
+        "pretty": true,
+        "baseUrl": ".",
+        "paths": {
+            "*": [
+                "node_modules/*",
+                "typings/*",
+            ],
+        },
+        "outDir": "dist",
+    },
+    "exclude": [
+        "node_moddules",
+        "codegen",
+        "cleanjs.ts",
+    ],
+}
