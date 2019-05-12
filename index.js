@@ -1,1 +1,1 @@
-module.exports = require('./dist/app').default
+module.exports = require('./dist').default
