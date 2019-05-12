@@ -34,7 +34,7 @@ export default async ({ appInfo }: Framework) => {
 }
 
 /**
- * helper functions (they should be here other than in ..util namespace)
+ * helper functions
  */
 function deepMerge(target: Indexed, source: Indexed): Config {
     const output = Object.assign({}, target)

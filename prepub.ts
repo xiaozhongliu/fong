@@ -1,9 +1,10 @@
-import fsasync from 'fs'
+import fsAsync from 'fs'
 import { promises as fs } from 'fs'
 
 async function main() {
-    fsasync.existsSync('./interface') || fsasync.mkdirSync('./interface')
+    fsAsync.existsSync('./interface') || fsAsync.mkdirSync('./interface')
 
+    const noModifyComment = '// generated. no need to modify.'
     const classes: string[] = []
     const interfaces: string[] = []
     const excludedTypes = [
@@ -24,20 +25,23 @@ async function main() {
     for (const item of await fs.readdir('./typings')) {
         if (!item.endsWith('.d.ts')) continue
 
-        const content = (await fs.readFile(`./typings/${item}`)).toString()
+        const defination = `./typings/${item}`
+        const content = (await fs.readFile(defination)).toString()
         const match = content.match(/interface\s([a-zA-Z]+)\s/)
         if (match && !excludedTypes.includes(match[1])) {
             interfaces.push(match[1])
 
+            const comment = `${noModifyComment} from defination: .${defination}`
             const file = `./interface/${item.replace('.d.ts', '.ts')}`
-            fs.writeFile(file, `export default ${content}`)
+            fs.writeFile(file, `${comment}\nexport default ${content}`)
             console.log('generated', file)
         }
     }
 
     // ./interface/index.ts
     await fs.writeFile('./interface/index.ts',
-        `${interfaces.map(item => `import ${item} from './${item.toLowerCase()}'`).join('\n')}
+        `${noModifyComment}
+${interfaces.map(item => `import ${item} from './${item.toLowerCase()}'`).join('\n')}
 
 export {
 ${interfaces.map(item => `    ${item},`).join('\n')}
@@ -47,7 +51,8 @@ ${interfaces.map(item => `    ${item},`).join('\n')}
 
     // ./index.ts
     await fs.writeFile('./index.ts',
-        `import {
+        `${noModifyComment}
+import {
 ${classes.map(item => `    ${item},`).join('\n')}
 } from './class'
 

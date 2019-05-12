@@ -1,3 +1,4 @@
+// generated. no need to modify.
 import AppInfo from './appinfo'
 import Config from './config'
 import Logger from './logger'

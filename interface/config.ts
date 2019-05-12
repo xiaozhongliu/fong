@@ -1,3 +1,4 @@
+// generated. no need to modify. from defination: ../typings/config.d.ts
 export default interface Config extends Indexed {
     // basic
     PORT?: number
