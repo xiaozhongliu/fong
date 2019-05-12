@@ -9,6 +9,7 @@
             "type": "node",
             "request": "launch",
             "protocol": "inspector",
+            "internalConsoleOptions": "openOnSessionStart",
             "runtimeArgs": [
                 "-r",
                 "ts-node/register"
@@ -22,6 +23,7 @@
             "type": "node",
             "request": "launch",
             "protocol": "inspector",
+            "internalConsoleOptions": "openOnSessionStart",
             "runtimeArgs": [
                 "-r",
                 "ts-node/register"
