@@ -1,3 +1,6 @@
+// generated. no need to modify. <<<<<< start <<<<<<
+import { Config } from '../interface'
+// generated. no need to modify. >>>>>>> end >>>>>>>
 import { promises as fs } from 'fs'
 import { Framework } from '../class'
 

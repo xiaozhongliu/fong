@@ -3,7 +3,6 @@ import { promises as fs } from 'fs'
 
 async function main() {
     fsAsync.existsSync('./interface') || fsAsync.mkdirSync('./interface')
-
     const noModifyComment = '// generated. no need to modify.'
     const classes: string[] = []
     const interfaces: string[] = []
@@ -12,7 +11,8 @@ async function main() {
         'Indexed',
     ]
 
-    // classes
+
+    // generate classes
     for (const item of await fs.readdir('./class')) {
         const content = (await fs.readFile(`./class/${item}`)).toString()
         const match = content.match(/class\s([a-zA-Z]+)\s/)
@@ -21,7 +21,7 @@ async function main() {
         }
     }
 
-    // interfaces
+    // generate interfaces
     for (const item of await fs.readdir('./typings')) {
         if (!item.endsWith('.d.ts')) continue
 
@@ -38,7 +38,8 @@ async function main() {
         }
     }
 
-    // ./interface/index.ts
+
+    // generate ./interface/index.ts
     await fs.writeFile('./interface/index.ts',
         `${noModifyComment}
 ${interfaces.map(item => `import ${item} from './${item.toLowerCase()}'`).join('\n')}
@@ -49,7 +50,8 @@ ${interfaces.map(item => `    ${item},`).join('\n')}
 `)
     console.log('generated', './interface/index.ts')
 
-    // ./index.ts
+
+    // generate ./index.ts
     await fs.writeFile('./index.ts',
         `${noModifyComment}
 import {
@@ -68,5 +70,27 @@ ${interfaces.map(item => `    ${item},`).join('\n')}
 export default Framework
 `)
     console.log('generated', './index.ts')
+
+
+    // prepend interfaces imports
+    for (const dir of ['./class/', './initialize/']) {
+        for (const file of await fs.readdir(dir)) {
+            if (!file.endsWith('.ts')) continue
+
+            const path = `./${dir}/${file}`
+            let content = (await fs.readFile(path)).toString()
+            const targets = interfaces.filter(item => {
+                return content.includes(`: ${item}`)
+            })
+            if (!targets.length) continue
+
+            content = content.replace(/^\/\/(.|\n)+>>>>>>>(\n+)/, '')
+            await fs.writeFile(path,
+                `${noModifyComment} <<<<<< start <<<<<<
+import { ${targets.join(', ')} } from '../interface'
+${noModifyComment} >>>>>>> end >>>>>>>
+${content}`)
+        }
+    }
 }
 main()

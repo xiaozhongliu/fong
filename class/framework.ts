@@ -1,3 +1,6 @@
+// generated. no need to modify. <<<<<< start <<<<<<
+import { AppInfo, Config, Logger } from '../interface'
+// generated. no need to modify. >>>>>>> end >>>>>>>
 import path from 'path'
 import grpc, { Server } from 'grpc'
 import MidwareList from './midware-list'
