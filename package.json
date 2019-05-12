@@ -5,9 +5,9 @@
     "main": "dist/index.js",
     "license": "MIT",
     "scripts": {
-        "publish": "ts-node prepub && npm run tsc && npm publish",
+        "publish": "ts-node script/prepub && npm run tsc && npm publish",
         "tsc": "rm -rf dist && tsc -p tsconfig.json",
-        "cleanjs": "ts-node cleanjs"
+        "cleanjs": "ts-node script/cleanjs"
     },
     "dependencies": {
         "@grpc/proto-loader": "^0.5.0",
