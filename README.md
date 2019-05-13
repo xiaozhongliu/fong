@@ -63,9 +63,9 @@ root
 ├── config
 |  ├── config.default.ts
 |  ├── config.dev.ts
-|  └── config.test.ts
+|  ├── config.test.ts
 |  ├── config.stage.ts
-|  ├── config.prod.ts
+|  └── config.prod.ts
 ├── midware
 |  └── logger.ts
 ├── controller

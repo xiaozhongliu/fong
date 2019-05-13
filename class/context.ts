@@ -19,6 +19,9 @@ export default class Context {
     get metadata() {
         return this._metadata
     }
+    get config() {
+        return this._app.config
+    }
     get logger() {
         return this._app.logger
     }
