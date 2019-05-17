@@ -1,4 +1,5 @@
-import { promises as fs } from 'fs'
+import fs from 'fs'
+import { promisify } from 'util'
 import { ServerUnaryCall, sendUnaryData } from 'grpc'
 import { Framework, Controller, Context } from '../class'
 import util from '../util'
@@ -6,7 +7,7 @@ import util from '../util'
 export default async (app: Framework) => {
     const possibleDist = /\.ts$/.test(__filename) ? '' : '/dist'
     const controllerPath = `${app.appInfo.rootPath}${possibleDist}/controller`
-    const files = await fs.readdir(controllerPath)
+    const files = await promisify(fs.readdir)(controllerPath)
     for (const file of files) {
 
         const module = await import(`${controllerPath}/${file}`)

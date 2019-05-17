@@ -1,13 +1,14 @@
 // generated. no need to modify. <<<<<< start <<<<<<
 import { Config } from '../interface'
 // generated. no need to modify. >>>>>>> end >>>>>>>
-import { promises as fs } from 'fs'
+import fs from 'fs'
+import { promisify } from 'util'
 import { Framework } from '../class'
 
 export default async ({ appInfo }: Framework) => {
     const possibleDist = /\.ts$/.test(__filename) ? '' : '/dist'
     const configPath = `${appInfo.rootPath}${possibleDist}/config`
-    const files = await fs.readdir(configPath)
+    const files = await promisify(fs.readdir)(configPath)
     const env = process.env.NODE_ENV
     let defaultConfig: Function
     let envConfig: Function
