@@ -83,9 +83,9 @@ root
 |  ├── request.20190512.log
 |  └── request.20190513.log
 ├── app
-├── packagen
-├── tsconfign
-└── tslintn
+├── package.json
+├── tsconfig.json
+└── tslint.json
 ```
 
 ### 入口文件
