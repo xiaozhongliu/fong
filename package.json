@@ -1,7 +1,7 @@
 {
     "name": "fong",
     "version": "0.1.9",
-    "description": "Framework Of Node GRPC.",
+    "description": "A service framework of node gRPC.",
     "main": "dist/index.js",
     "license": "MIT",
     "scripts": {
